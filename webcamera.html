@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam</title>
+</head>
+<body>
+    <h1>Webcam thuộc Gia Khánh</h1>
+    <video id="webcam" width="640" height="480" autoplay></video>
+
+    <script>
+        // Truy cập webcam và hiển thị hình ảnh lên video element
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                var videoElement = document.getElementById('webcam');
+                videoElement.srcObject = stream;
+            })
+            .catch(function(error) {
+                console.log("Error accessing webcam:", error);
+            });
+    </script>
+    <p>Bản quyền : Code thuộc Gia Khánh</p>
+</body>
+</html>

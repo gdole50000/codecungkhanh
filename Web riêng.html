@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang web của tôi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg'); /* Đường dẫn đến hình nền */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        header {
+            padding: 20px 0;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Chào mừng đến với trang web của tôi</h1>
+        </header>
+        <div class="content">
+            <p>Xin chào! Đây là trang web của tôi. Trang web này được thiết kế đẹp và sử dụng hình nền sinh động để tạo nên không khí ấn tượng. Hãy khám phá trang web của tôi và tìm hiểu thêm về những gì tôi có để chia sẻ.</p>
+            <a href="#" class="button">Khám phá ngay</a>
+        </div>
+    </div>
+</body>
+</html>
+
+#include <iostream>
+    #include <string>
+    
+    int main() {
+        std::string name;
+        std::cout << "Xin chào! Xin vui lòng nhập tên của bạn: ";
+        std::getline(std::cin, name);
+        std::cout << "Chào mừng " << name << " đến với chương trình C++ đầu tiên của bạn!" << std::endl;
+        return 0;
+    }

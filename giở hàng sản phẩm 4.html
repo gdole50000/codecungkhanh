@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffc0cb; /* Màu hồng */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #6495ed; /* Màu xanh */
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .cart {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .cart h2 {
+            margin-top: 0;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .checkout {
+            background-color: #6495ed; /* Màu xanh */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .checkout:hover {
+            background-color: #4169e1; /* Màu xanh đậm */
+        }
+        .delivery {
+            margin-top: 20px;
+        }
+        /* Thêm CSS khác nếu cần */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Online Shopping</h1>
+    </header>
+    <div class="container">
+        <div class="cart">
+            <h2>Your Cart</h2>
+            <div class="cart-item">
+                <span>Product 1</span>
+                <span>$10</span>
+            </div>
+            <div class="cart-item">
+                <span>Product 2</span>
+                <span>$20</span>
+            </div>
+            <button class="checkout">Checkout</button>
+        </div>
+        <div class="delivery">
+            <h2>Delivery Information</h2>
+            <form>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required><br>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required><br>
+                <label for="postal-code">Postal Code:</label>
+                <input type="text" id="postal-code" name="postal-code" required><br>
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required><br>
+                <button class="checkout">Place Order</button>
+            </form>
+        </div>
+    </div>
+    <a href="https://github.com/gdole50000/Gia-Kh-nh.git">đây</a>
+</body>
+</html>

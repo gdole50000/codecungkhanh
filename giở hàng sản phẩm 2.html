@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping</title>
+    <style>
+        /* CSS cho giao diện trang chủ */
+        /* Bổ sung sau */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Online Shopping</h1>
+        <a href="#" id="cart-link">Cart (0)</a>
+    </header>
+
+    <!-- Danh sách sản phẩm -->
+    <div id="product-list">
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>$10</p>
+            <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>$20</p>
+            <button onclick="addToCart('Product 2', 20)">Add to Cart</button>
+        </div>
+        <!-- Thêm sản phẩm khác nếu cần -->
+    </div>
+
+    <!-- Giỏ hàng -->
+    <div id="cart" class="hidden">
+        <h2>Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: <span id="cart-total">$0</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+        // JavaScript để quản lý giỏ hàng
+        let cartItems = [];
+
+        function addToCart(productName, price) {
+            cartItems.push({ productName, price });
+            updateCartLink();
+        }
+
+        function renderCart() {
+            let cartElement = document.getElementById('cart-items');
+            let totalElement = document.getElementById('cart-total');
+            cartElement.innerHTML = '';
+            let total = 0;
+            cartItems.forEach(item => {
+                let listItem = document.createElement('li');
+                listItem.textContent = `${item.productName} - $${item.price}`;
+                cartElement.appendChild(listItem);
+                total += item.price;
+            });
+            totalElement.textContent = `$${total}`;
+        }
+
+        function updateCartLink() {
+            let cartLink = document.getElementById('cart-link');
+            cartLink.textContent = `Cart (${cartItems.length})`;
+            if (cartItems.length > 0) {
+                cartLink.classList.remove('hidden');
+            } else {
+                cartLink.classList.add('hidden');
+            }
+        }
+
+        function checkout() {
+            alert('Checkout complete! Thank you for shopping with us!');
+            // Có thể thêm xử lý khác tại đây (ví dụ: gửi đơn hàng đến máy chủ)
+            cartItems = []; // Xóa giỏ hàng sau khi thanh toán
+            renderCart(); // Cập nhật giao diện
+            updateCartLink();
+        }
+    </script>
+</body>
+</html>
