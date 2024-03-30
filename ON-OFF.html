@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On/Off Button</title>
+<style>
+    body {
+        background-color: #000; /* Màu nền mặc định */
+        transition: background-color 0.5s ease; /* Hiệu ứng chuyển đổi màu nền */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .switch-container {
+        position: relative;
+        display: inline-block;
+        width: 150px; /* Chiều rộng nút */
+        height: 75px; /* Chiều cao nút */
+    }
+
+    .switch {
+        position: absolute;
+        width: 100%; /* Chiều rộng của nút */
+        height: 100%; /* Chiều cao của nút */
+        background-color: #555; /* Màu nền của nút */
+        border-radius: 50px; /* Độ cong viền */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .switch::before {
+        content: "";
+        position: absolute;
+        width: 65px; /* Kích thước của "nút" */
+        height: 65px; /* Kích thước của "nút" */
+        background-color: #fff; /* Màu của "nút" */
+        border-radius: 50%; /* Hình dạng của "nút" */
+        top: 5px; /* Căn chỉnh "nút" theo trục y */
+        left: 5px; /* Căn chỉnh "nút" theo trục x */
+        transition: 0.3s; /* Hiệu ứng chuyển đổi khi thay đổi trạng thái */
+    }
+
+    input[type="checkbox"] {
+        display: none; /* Ẩn checkbox */
+    }
+
+    input[type="checkbox"]:checked + .switch::before {
+        transform: translateX(80px); /* Di chuyển "nút" sang phải */
+    }
+</style>
+</head>
+<body>
+
+<div class="switch-container">
+    <input type="checkbox" id="toggleSwitch">
+    <label class="switch" for="toggleSwitch"></label>
+</div>
+
+<script>
+    const toggleSwitch = document.getElementById('toggleSwitch');
+    const body = document.querySelector('body');
+
+    toggleSwitch.addEventListener('change', () => {
+        if (toggleSwitch.checked) {
+            // Nếu toggle được bật, thay đổi màu nền sang màu trắng
+            body.style.backgroundColor = "#fff";
+        } else {
+            // Nếu toggle được tắt, thay đổi màu nền sang màu đen
+            body.style.backgroundColor = "#000";
+        }
+    });
+</script>
+
+</body>
+</html>
