@@ -1,0 +1,136 @@
+<div class="content">
+	<div class="base"></div>
+	<div class="ring">
+		<div class="ball"></div>
+		<div class="ball-shadow"></div>
+	</div>
+</div>
+<style>
+    :root {
+	--b1: #141420;
+	--b2: #13131d;
+	--c3: #383a51;
+	--bg1: #393b52;
+	--bg2: #1f2130;
+	--r1: #717699;
+	--r2: #8286ac;
+	--r3: #141420;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.content {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(-45deg, var(--bg1), var(--bg2));
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.base {
+	width: 150vw;
+	height: 100vh;
+	position: absolute;
+	top: calc(50vh + 18.5vmin);
+	background: var(--r3);
+	transform-origin: 50% 0;
+	transform: rotate(13deg);
+}
+
+.base:before {
+	content: "";
+	position: absolute;
+	background: linear-gradient(45deg, var(--r2), var(--r1));
+	width: 100%;
+	height: 5vmin;
+}
+
+.base:after {
+	content: "";
+	position: absolute;
+	background: 
+		radial-gradient(circle at 68% -14%, #000, #fff0 8vmin),  
+		radial-gradient(circle at 50% 50%, #000000c2, #fff0), 
+		radial-gradient(circle at 50% 50%, #000c, #fff0);
+	border-radius: 100% 20% 50% 0;
+	width: 40%;
+	height: 3vmin;
+	top: 2.1vmin;
+	left: 50%;
+	transform: translateX(-65%);
+	filter: blur(3px);
+}
+
+.ring {
+	position: absolute;
+	margin-left: 6vmin;
+	width: 43vmin;
+	height: 45vmin;
+	border-radius: 100%;
+	background: 
+		linear-gradient(-5deg, #fff0 43vmin, #000c),
+		radial-gradient(circle at 63% 40%, #fff0 0 23vmin, #000d 31vmin), 
+		linear-gradient(180deg, #fff0 40vmin, #000c), 
+		radial-gradient(circle at 50% 100%, #0006 0vmin, #fff0 5vmin), 
+		radial-gradient(circle at 55% 105%, #0006 0vmin, #fff0 8vmin),
+		radial-gradient(circle at 75% 95%, #0006 0vmin, #fff0 10vmin), 
+		radial-gradient(circle at 53% 50%, #fff0 17vmin, var(--r2) calc(17vmin + 1px)), 
+		radial-gradient(circle at 47% 50%, #fff0 17vmin, var(--r2) calc(17vmin + 1px));
+}
+
+.ring:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at 50% 50%, #fff0 17vmin, var(--r3) calc(17vmin + 1px));
+	border-radius: 100%;
+	left: -4vmin;
+}
+
+.ball {
+	width: 9vmin;
+	height: 9vmin;
+	background: 
+		radial-gradient(circle at -80% 120%, var(--r3) 4vmin, #fff0), 
+		radial-gradient(circle at 6% 60%, #1f212d40 4vmin, #fff0), 
+		radial-gradient(circle at 100% 38%, #fff8 -2vmin, #fff0 5vmin), 
+		radial-gradient(circle at 100% 50%, var(--r1) -2vmin, #fff0),
+		radial-gradient(circle at 6% 60%, var(--r3) 4vmin, var(--r1));
+	border-radius: 100%;
+	z-index: 5;
+	position: absolute;
+	top: 23vmin;
+	left: 3vmin;
+}
+
+.ball-shadow {
+	width: 9vmin;
+	height: 9vmin;
+	background: #000e;
+	border-radius: 100%;
+	position: absolute;
+	top: 25vmin;
+	left: 0.3vmin;
+	z-index: 0;
+	transform: scale(0.5) rotate(-30deg);
+	filter: blur(8px);
+	box-shadow: 
+		-0.5vmin 4vmin 8vmin var(--r3), 
+		-0.5vmin 7vmin 7vmin var(--r3), 
+		-0.5vmin -6vmin 8vmin var(--r3), 
+		-0.5vmin -5vmin 5vmin var(--r3), 
+		-0.5vmin 0.5vmin 0 var(--r3), 
+		-2vmin -1vmin 0 #0008, -1vmin 3vmin 0 #0008;
+}
+</style>

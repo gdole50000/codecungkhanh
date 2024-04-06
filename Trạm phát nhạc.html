@@ -1,0 +1,582 @@
+<body id="bodybg" style="background-image: url('https://raw.githubusercontent.com/hluebbering/web-design/main/assets/images/HeroesVillains4.png');">
+
+    <audio src="https://offblogmedia.com/wp-content/uploads/2023/04/Metro_Boomin_Ft_Don_Toliver_Future_-_Too_Many_Nights_Offblogmedia.com.mp3" id="song"></audio>
+  
+    <div class="wrapper">
+      <div class="container" id="background">
+  
+        <div class="box"></div>
+  
+        <div class="playlist">
+          <div class="song-playlist" style="opacity: 0;">Heroes and Villains</div>
+  
+        </div>
+  
+        <div class="track_image" id="track_image">
+          <div class="vinylcover"></div>
+          <img src="https://raw.githubusercontent.com/hluebbering/web-design/main/assets/images/metroboomin2.gif" id="thumbnail" />
+        </div>
+  
+        <div class="songtitles">
+  
+          <div class="song-title">
+            <span id="h">Too Many Nights</span>
+            <span id="h2">(feat. Don Toliver &amp; Future)</span>
+  
+          </div>
+  
+          <div class="song-artist">Metro Boomin</div>
+  
+        </div>
+  
+        <div class="progressbar">
+          <div class="currentTime"></div>
+          <input type="range" id="progress-bar" min="0" max="" value="0" onchange="changeProgressBar()" />
+  
+          <div class="durationTime"></div>
+        </div>
+  
+        <div class="trackbuttons">
+  
+          <div class="mybutton">
+            <i onclick="previousSong()" id="previous-song" class="fas fa-backward"></i>
+          </div>
+  
+          <div class="mybutton">
+            <i onclick="playPause()" id="play-pause" class="fas fa-play"></i>
+          </div>
+  
+          <div class="mybutton">
+            <i onclick="nextSong()" id="next-song" class="fas fa-forward"></i>
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </body>
+  <style>
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  min-height: 100vh;
+  margin: auto;
+  max-width: 100%;
+  width: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.demoWrapper {
+  padding: 10px;
+  background: white;
+  box-sizing: border-box;
+  resize: horizontal;
+  border: 1px dashed;
+  overflow: auto;
+  max-width: 100%;
+  height: calc(100vh - 16px);
+}
+
+.wrapper {
+  position: relative;
+
+  position: absolute;
+  /*height: 420px;*/
+  width: 300px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: visible;
+  text-shadow: 0 0.025em black;
+  position: relative;
+  margin: auto;
+}
+
+.container {
+  width: clamp(45%, 280px, 40vw);
+  height: clamp(340px, 70vh, 90%);
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  margin: auto;
+  position: relative;
+  backdrop-filter: blur(18px) saturate(1.25);
+  box-sizing: border-box;
+  z-index: 2;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 0.025em rgb(69 82 98);
+  box-shadow: 0px 1px 24px -1px rgba(0, 0, 0, 0.2),
+    0 1.5em 2em -1em rgba(0, 0, 0, 0.8), inset 0 0.0625em 0 white,
+    inset 0 -0.125em 0.0625em rgba(0, 0, 0, 0.3);
+  border: 2px outset rgba(255, 255, 255, 0.3);
+  background-image: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+.track_image {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.trackbuttons {
+  display: flex;
+  align-items: center;
+  width: 56%;
+  justify-content: space-around;
+  margin: 4px 10px;
+  margin-top: 10px;
+}
+
+.trackbuttons .mybutton i {
+  z-index: 9;
+}
+
+img#thumbnail {
+  width: 55%;
+  height: auto;
+  position: relative;
+  bottom: 10px;
+}
+
+.vinylcover {
+  content: url(https://assets.codepen.io/4927073/VinylCover.png);
+  object-fit: cover;
+  z-index: 5;
+  width: 60%;
+  height: auto;
+  bottom: 6px;
+  position: absolute;
+  filter: contrast(1.25) saturate(2.5)
+    drop-shadow(0.5px 1px 1px rgba(0, 0, 0, 0.2));
+  opacity: 0.95;
+}
+
+.songtitles {
+  text-align: center;
+  width: 90%;
+  top: -2px;
+  position: relative;
+}
+
+.song-title {
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 4px;
+  margin-top: 2px;
+  font-family: alfarn, sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical;
+  color: hsl(200 2% 80% / 1);
+  text-shadow: -0.5px -0.5px 0.5px #000, 0.125px 0.15px 0.5px #ffff;
+}
+
+span#h2 {
+  font-family: "Lato", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-family: owners-narrow, sans-serif;
+  font-family: owners, sans-serif;
+  /* font-family: alfarn-2, sans-serif; */
+  font-weight: 400;
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.song-artist {
+  font-size: 12px;
+  letter-spacing: 0.1rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-family: Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  color: hsl(200 2% 70% / 1);
+  text-shadow: -0.5px -0.5px 0.5px #000, 0.125px 0.15px 0.5px #ffff;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1 !important;
+  -webkit-box-orient: vertical;
+  color: #ddd;
+}
+.song-artist {
+  letter-spacing: 0.1rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  text-shadow: -0.5px -0.5px 0.5px #000, 0.125px 0.15px 0.5px #ffff;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1 !important;
+  -webkit-box-orient: vertical;
+  color: #c9c9c9;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  font-family: "acumin-pro";
+}
+
+.playlist {
+  height: 22px;
+}
+
+.song-playlist {
+  font-size: 13px;
+  letter-spacing: 0.13rem;
+  top: -25px;
+  position: relative;
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-family: Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  letter-spacing: 1px;
+  padding-bottom: 8px;
+  padding-top: 20px;
+  color: hsl(213 5% 50% / 1);
+  mix-blend-mode: color;
+  font-weight: 400;
+  font-family: source-sans-pro, sans-serif;
+}
+
+.progressbar {
+  display: flex;
+  padding: 4px;
+  gap: 4px;
+  font-family: pf-videotext, sans-serif;
+  font-size: 12px;
+  color: white;
+}
+
+input#progress-bar {
+  margin: auto;
+  height: 6px;
+  border-radius: 10pt;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), inset 0 0 4px 2px rgba(0, 0, 0, 0.3),
+    0px -2px 2px rgba(0, 0, 0, 0.5), 0px 2px 2px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+.mybutton {
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 50%;
+  box-shadow: 0 -2px 4px 0 rgb(255 255 255 / 10%);
+  margin: 0;
+
+  font-size: 15px;
+
+  padding: 7px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.mybutton::before,
+.mybutton::after {
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.04)
+  );
+}
+
+.mybutton::before {
+  box-shadow: 0 -1px 1px 0 rgb(255 255 255 / 60%);
+  mix-blend-mode: overlay;
+}
+
+.mybutton::after {
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 60%);
+  mix-blend-mode: soft-light;
+}
+
+.mybutton:active {
+  box-shadow: inset 0 -2px 4px 1px hsl(0deg 0% 95% / 30%),
+    inset -1px -2px 4px -4px hsl(0deg 0% 95% / 30%);
+  background: hsl(0deg 0% 3% / 8%);
+
+  transform: scale(0.995);
+}
+
+.fa-play:before,
+.fa-pause:before,
+.fa-backward:before,
+.fa-forward:before {
+  text-shadow: 0 1px 1px rgb(255 255 255 / 20%);
+}
+
+/** KEYFRAMES **/
+
+@keyframes flip {
+  from {
+    transform: rotateY(-10deg) scale(1.1);
+  }
+  to {
+    transform: rotateY(10 deg) scale(1.1);
+  }
+}
+
+/** MEDIA LAYOUTS **/
+@media (max-width: 730px) {
+  .container {
+    width: 260px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    width: 250px;
+    height: 340px;
+  }
+}
+
+@media (max-height: 400px) {
+  .container {
+    width: 220px;
+    width: 210px;
+    height: 250px;
+  }
+  .track_image {
+    margin-top: 0px;
+  }
+
+  .song-title {
+    font-size: 14px;
+    margin-top: -8px;
+  }
+
+  .song-artist {
+    font-size: 12px;
+  }
+  .progressbar {
+    padding: 0px;
+
+    font-size: 11px;
+  }
+
+  .mybutton {
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+}
+
+  </style>
+  <script>
+    // background derived from album cover
+const background = document.querySelector("#background");
+const bodybg = document.querySelector("#bodybg");
+
+// track album cover + wrapper
+const thumbnail = document.querySelector("#thumbnail");
+const trackVinyl = document.querySelector("#track_image");
+
+// audio object
+const song = document.querySelector("#song");
+
+// track details
+const songArtist = document.querySelector(".song-artist");
+const songTitle = document.querySelector(".song-title");
+
+// track progress bar
+const progressBar = document.querySelector("#progress-bar");
+let pPause = document.querySelector("#play-pause");
+
+songIndex = 0;
+
+// object storing paths for audio objects
+songs = [
+  // Too Many Nights
+  "https://offblogmedia.com/wp-content/uploads/2023/04/Metro_Boomin_Ft_Don_Toliver_Future_-_Too_Many_Nights_Offblogmedia.com.mp3",
+  // Cinderella
+  "https://audmak.icu/wp-content/uploads/2024/03/09.%20Cinderella%20-%20%28Hiphopde.com%29.mp3",
+  // Am I Dreaming
+  "https://audmak.icu/wp-content/uploads/2023/05/02.%20Am%20I%20Dreaming%20-%20%28Hiphopde.com%29.mp3",
+  // Mr. Right Now
+  "https://offblogmedia.com/wp-content/uploads/2024/03/21_Savage_Metro_Boomin_Ft_Drake_-_Mr_Right_Now_Offblogmedia.com.mp3"
+];
+
+// object storing paths for album covers and backgrounds
+thumbnails = [
+  // Heroes & Villains
+  "https://raw.githubusercontent.com/hluebbering/web-design/main/assets/images/metroboomin2.gif",
+  // We Don't Trust You
+  "https://assets.codepen.io/4927073/433452617_952539916241903_4937267218052324278_n.jpg",
+  // Metro Spider
+  "https://raw.githubusercontent.com/hluebbering/web-design/main/assets/images/metroboomin4.gif",
+  // Savage Mode II
+  "https://raw.githubusercontent.com/hluebbering/web-design/main/assets/images/21xmetro.gif"
+];
+
+backgrounds = [
+  "https://raw.githubusercontent.com/hluebbering/web-design/main/assets/images/HeroesVillains4.png",
+  "https://assets.codepen.io/4927073/433452617_952539916241903_4937267218052324278_n.jpg",
+  "https://raw.githubusercontent.com/hluebbering/web-design/main/assets/images/metrospider.png",
+  "https://media.pitchfork.com/photos/5f7b3ba12dd72c64377cf95b/1:1/w_3000,h_3000,c_limit/savage%20mode%202_21%20savage%20metro%20boomin.jpg"
+];
+
+// object storing track artists
+songArtists = [
+  "Metro Boomin",
+  "Metro Boomin, Future",
+  "Metro Boomin, A$AP Rocky",
+  "Metro Boomin"
+];
+// object storing track titles
+songTitles = [
+  "Too Many Nights <span id='h2'>(feat. Don Toliver &amp; Future)</span>",
+  "Cinderella",
+  "Am I Dreaming",
+  "Mr. Right Now <span id='h2'>(feat. Drake)</span>"
+];
+
+// object storing track font color
+songColors = ["white", "#b41c10", "white", "white"];
+songAlbums = [
+  "Heroes and Villains",
+  "We Don’t Trust You",
+  "SPIDER-MAN: ACROSS THE SPIDER-VERSE",
+  "Savage Mode II"
+];
+
+// function changes play-pause (pp) element based on boolean value "playing". If play clicked, change pp.src to pause and call song.play() and vice versa.
+let playing = true;
+function playPause() {
+  if (playing) {
+    const song = document.querySelector("#song"),
+      thumbnail = document.querySelector("#thumbnail");
+
+    pPause.classList.remove("fa-play");
+    pPause.classList.add("fa-pause");
+
+    trackVinyl.style.transform = "scale(1.15)";
+
+    song.play();
+    playing = false;
+  } else {
+    pPause.classList.remove("fa-pause");
+    pPause.classList.add("fa-play");
+
+    trackVinyl.style.transform = "scale(1)";
+
+    song.pause();
+    playing = true;
+  }
+}
+
+// automatically play next song when current audio ends
+song.addEventListener("ended", function () {
+  nextSong();
+});
+
+// function increments songIndex, updates song details and images, then runs playPause() to play next song
+function nextSong() {
+  songIndex++;
+  if (songIndex > 3) {
+    songIndex = 0;
+  }
+  song.src = songs[songIndex];
+  thumbnail.src = thumbnails[songIndex];
+  bodybg.style.backgroundImage = "url('" + backgrounds[songIndex] + "')";
+
+  songArtist.innerHTML = songArtists[songIndex];
+  songTitle.innerHTML = songTitles[songIndex];
+  songTitle.style.color = songColors[songIndex];
+
+  playing = true;
+  playPause();
+}
+
+// songIndex decremented, song details and images update to previous index, and playPause() plays previous track
+function previousSong() {
+  songIndex--;
+  if (songIndex < 0) {
+    songIndex = 3;
+  }
+  song.src = songs[songIndex];
+  thumbnail.src = thumbnails[songIndex];
+  bodybg.style.backgroundImage = "url('" + backgrounds[songIndex] + "')";
+
+  songArtist.innerHTML = songArtists[songIndex];
+  songTitle.innerHTML = songTitles[songIndex];
+  songTitle.style.color = songColors[songIndex];
+
+  playing = true;
+  playPause();
+}
+
+// update progressBar.max to song duration
+function updateProgressValue() {
+  progressBar.max = song.duration;
+  progressBar.value = song.currentTime;
+  document.querySelector(".currentTime").innerHTML = formatTime(
+    Math.floor(song.currentTime)
+  );
+  if (document.querySelector(".durationTime").innerHTML === "NaN:NaN") {
+    document.querySelector(".durationTime").innerHTML = "0:00";
+  } else {
+    document.querySelector(".durationTime").innerHTML = formatTime(
+      Math.floor(song.duration)
+    );
+  }
+}
+
+// format song.currentTime and song.duration to MM:SS
+function formatTime(seconds) {
+  let min = Math.floor(seconds / 60);
+  let sec = Math.floor(seconds - min * 60);
+  if (sec < 10) {
+    sec = `0${sec}`;
+  }
+  return `${min}:${sec}`;
+}
+
+// run updateProgressValue every 0.5s to show change in progressBar and song.currentTime on DOM
+setInterval(updateProgressValue, 500);
+
+// progressBar.value is changed when slider thumb is dragged without auto-playing audio
+function changeProgressBar() {
+  song.currentTime = progressBar.value;
+}
+
+  </script>
